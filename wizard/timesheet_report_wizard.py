@@ -50,7 +50,10 @@ class TimesheetReportWizard(models.TransientModel):
                 idle_hours += hours
                 continue
             
-
+            # count only approved hours not all hours if validation is enabled on the project
+            mode = getattr(project, 'timesheet_progress_mode', 'all') or 'all'
+            if mode == 'validated' and not line.validated:
+                continue 
 
             category = project.x_activity_category
 

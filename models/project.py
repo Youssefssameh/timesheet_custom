@@ -7,8 +7,6 @@ class ProjectProject(models.Model):
     # many2one to be easy to change the category or add (for project and tasks )
     # group report manager 
     # for many employees 
-    # count only approved hours not all hours 
-    # independent 
 
     
     x_activity_category = fields.Selection(
