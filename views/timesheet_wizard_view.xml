@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_timesheet_executive_wizard_form" model="ir.ui.view">
+        <field name="name">timesheet.executive.report.wizard.form</field>
+        <field name="model">timesheet.executive.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Executive Timesheet Report">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_print_report"
+                            string="Generate PDF Report"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_timesheet_executive_wizard" model="ir.actions.act_window">
+        <field name="name">Executive Timesheet Report</field>
+        <field name="res_model">timesheet.executive.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_timesheet_executive_report"
+        name="Executive Report"
+        parent="hr_timesheet.menu_timesheets_reports"
+        action="action_open_timesheet_executive_wizard"
+        sequence="20"/>
+
+
+</odoo>

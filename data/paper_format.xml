@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_us_letter_executive" model="report.paperformat">
+        <field name="name">US Letter – Executive Report</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_width">216</field>
+        <field name="page_height">279</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">12</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">120</field>
+    </record>
+</odoo>

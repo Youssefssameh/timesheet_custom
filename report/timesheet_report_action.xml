@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_timesheet_executive_report" model="ir.actions.report">
+        <field name="name">Executive Timesheet Report</field>
+        <field name="model">timesheet.executive.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">timesheet_custom.timesheet_executive_report_template</field>
+        <field name="report_file">timesheet_custom.timesheet_executive_report_template</field>
+        <field name="paperformat_id" ref="timesheet_custom.paperformat_us_letter_executive"/>
+        <field name="print_report_name">'%s Activity Report' % object.employee_id.name</field>
+    </record>
+</odoo>

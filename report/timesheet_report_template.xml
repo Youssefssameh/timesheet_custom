@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="timesheet_executive_report_template">
+<t t-call="web.html_container">
+<t t-call="web.external_layout">
+
+    <t t-set="o" t-value="docs[0]"/>
+    <t t-set="d" t-value="o._compute_report_data()"/>
+
+    <div class="page" style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; color: #1a1a1a; line-height: 1.45;">
+
+        <!-- ══ HEADER ══ -->
+        <div style="border-bottom: 2px solid #2c3e50; padding-bottom: 8px; margin-bottom: 12px;">
+            <h2 style="margin:0; font-size:15px; font-weight:700; color:#2c3e50; letter-spacing:0.4px;">
+                Executive Summary – <t t-esc="d['month_label']"/> Activity Report
+            </h2>
+            <p style="margin:4px 0 0 0; font-size:9px; color:#555;">
+                <strong>Employee:</strong> <t t-esc="d['employee_name']"/>
+                &#160;&#160;|&#160;&#160;
+                <strong>Period:</strong> <t t-esc="d['date_from']"/> – <t t-esc="d['date_to']"/>
+                &#160;&#160;|&#160;&#160;
+                <strong>Total Hours:</strong> <t t-esc="d['total_hhmm']"/> hrs
+            </p>
+        </div>
+
+        <!-- ══ SECTION 1: OVERVIEW TABLE ══ -->
+        <h3 style="font-size:10px; font-weight:700; color:#2c3e50; margin:0 0 5px 0; text-transform:uppercase; letter-spacing:0.5px;">
+            1. Time Allocation Overview
+        </h3>
+        <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:9.5px;">
+            <thead>
+                <tr style="background:#2c3e50; color:#fff;">
+                    <th style="padding:5px 8px; text-align:left;">Category</th>
+                    <th style="padding:5px 8px; text-align:center;">Hours</th>
+                    <th style="padding:5px 8px; text-align:center;">Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:#f4f6f8;">
+                    <td style="padding:4px 8px;">Billable Client Work</td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['hhmm_billable']"/></td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['pct_billable']"/>%</td>
+                </tr>
+                <tr>
+                    <td style="padding:4px 8px;">Internal System Development</td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['hhmm_internal']"/></td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['pct_internal']"/>%</td>
+                </tr>
+                <tr style="background:#f4f6f8;">
+                    <td style="padding:4px 8px;">Administrative &amp; Support</td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['hhmm_admin']"/></td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['pct_admin']"/>%</td>
+                </tr>
+                <tr>
+                    <td style="padding:4px 8px;">Idle Time</td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['hhmm_idle']"/></td>
+                    <td style="padding:4px 8px; text-align:center;"><t t-esc="d['pct_idle']"/>%</td>
+                </tr>
+                <tr style="background:#2c3e50; color:#fff; font-weight:700;">
+                    <td style="padding:5px 8px;">Total</td>
+                    <td style="padding:5px 8px; text-align:center;"><t t-esc="d['total_hhmm']"/></td>
+                    <td style="padding:5px 8px; text-align:center;">100.0%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ══ SECTION 2: BILLABLE ══ -->
+        <h3 style="font-size:10px; font-weight:700; color:#2c3e50; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:0.5px;">
+            2. Billable Client Work (<t t-esc="d['pct_billable']"/>%)
+        </h3>
+        <div style="margin-bottom:12px; padding-left:8px; border-left:3px solid #27ae60;">
+            <t t-if="d['billable_lines']">
+                <t t-foreach="d['billable_lines']" t-as="bl">
+                    <p style="margin:2px 0; font-size:9.5px;">
+                        <strong><t t-esc="bl['name']"/></strong>
+                        – <t t-esc="bl['hhmm']"/> hrs
+                        (<t t-esc="bl['pct']"/>%)
+                    </p>
+                </t>
+            </t>
+            <t t-else="">
+                <p style="margin:2px 0; font-size:9px; color:#999;">No billable entries recorded.</p>
+            </t>
+        </div>
+
+        <!-- ══ SECTION 3: INTERNAL ══ -->
+        <h3 style="font-size:10px; font-weight:700; color:#2c3e50; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:0.5px;">
+            3. Internal System Development (<t t-esc="d['pct_internal']"/>%)
+        </h3>
+        <div style="margin-bottom:12px; padding-left:8px; border-left:3px solid #2980b9;">
+            <t t-if="d['internal_lines']">
+                <t t-foreach="d['internal_lines']" t-as="il">
+                    <p style="margin:2px 0; font-size:9.5px;">
+                        <strong><t t-esc="il['name']"/></strong>
+                        – <t t-esc="il['hhmm']"/> hrs
+                    </p>
+                </t>
+            </t>
+            <t t-else="">
+                <p style="margin:2px 0; font-size:9px; color:#999;">No internal entries recorded.</p>
+            </t>
+        </div>
+
+        <!-- ══ SECTION 4: ADMIN ══ -->
+        <h3 style="font-size:10px; font-weight:700; color:#2c3e50; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:0.5px;">
+            4. Administrative &amp; Support (<t t-esc="d['pct_admin']"/>%)
+        </h3>
+        <div style="margin-bottom:12px; padding-left:8px; border-left:3px solid #e67e22;">
+            <t t-if="d['admin_lines']">
+                <p style="margin:2px 0; font-size:9.5px; line-height:1.8;">
+                    <t t-foreach="d['admin_lines']" t-as="al">
+                        <strong><t t-esc="al['label']"/>:</strong>
+                        <t t-esc="al['hhmm']"/> (<t t-esc="al['pct']"/>%)
+                        <t t-if="not al_last">&#160;|&#160;</t>
+                    </t>
+                </p>
+            </t>
+            <t t-else="">
+                <p style="margin:2px 0; font-size:9px; color:#999;">No administrative entries recorded.</p>
+            </t>
+        </div>
+
+        <!-- ══ SECTION 5: IDLE ══ -->
+        <h3 style="font-size:10px; font-weight:700; color:#2c3e50; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:0.5px;">
+            5. Idle Time (<t t-esc="d['pct_idle']"/>%)
+        </h3>
+        <div style="padding-left:8px; border-left:3px solid #e74c3c;">
+            <p style="margin:2px 0; font-size:9.5px;">
+                <t t-esc="d['idle_hhmm']"/> hours of downtime between tasks
+            </p>
+        </div>
+
+        <!-- ══ FOOTER ══ -->
+        <div style="margin-top:16px; padding-top:6px; border-top:1px solid #ddd; font-size:8px; color:#aaa; text-align:right;">
+            Confidential – For Management Review Only
+        </div>
+
+    </div>
+
+</t>
+</t>
+</template>
+</odoo>

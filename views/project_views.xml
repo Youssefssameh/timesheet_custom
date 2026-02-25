@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_form_inherit_activity_category" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.activity.category</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <!-- Put field in the Settings page -->
+            <xpath expr="//page[@name='settings']//group" position="inside">
+                <group string="Activity Category">
+                    <field name="x_activity_category"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
