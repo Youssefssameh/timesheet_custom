@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="category_billable" model="timesheet.activity.category">
+        <field name="name">Billable</field>
+        <field name="show_project_breakdown" eval="True"/>
+        <field name="show_type_breakdown" eval="False"/>
+        <field name="is_idle" eval="False"/>
+        <field name="is_protected" eval="False"/>
+        <field name="report_color">#27ae60</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="category_internal" model="timesheet.activity.category">
+        <field name="name">Internal</field>
+        <field name="show_project_breakdown" eval="True"/>
+        <field name="show_type_breakdown" eval="False"/>
+        <field name="is_idle" eval="False"/>
+        <field name="is_protected" eval="False"/>
+        <field name="report_color">#2980b9</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="category_admin" model="timesheet.activity.category">
+        <field name="name">Admin</field>
+        <field name="show_project_breakdown" eval="False"/>
+        <field name="show_type_breakdown" eval="True"/>
+        <field name="is_idle" eval="False"/>
+        <field name="is_protected" eval="True"/>
+        <field name="report_color">#e67e22</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="type_daily_scrum" model="timesheet.activity.type">
+        <field name="name">Daily Scrum Meetings</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="type_dept_meeting" model="timesheet.activity.type">
+        <field name="name">Department Meetings</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="type_management" model="timesheet.activity.type">
+        <field name="name">Overall Management</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="type_learning" model="timesheet.activity.type">
+        <field name="name">Learning</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="type_followup" model="timesheet.activity.type">
+        <field name="name">Follow-up Intern Team</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="type_support" model="timesheet.activity.type">
+        <field name="name">Support Tasks</field>
+        <field name="sequence">6</field>
+    </record>
+    <record id="type_break" model="timesheet.activity.type">
+        <field name="name">Break / Personal</field>
+        <field name="sequence">7</field>
+    </record>
+    <record id="type_holiday" model="timesheet.activity.type">
+        <field name="name">Public Holiday</field>
+        <field name="sequence">8</field>
+    </record>
+    <record id="type_idle" model="timesheet.activity.type">
+        <field name="name">Idle</field>
+        <field name="is_idle" eval="True"/>
+        <field name="sequence">9</field>
+    </record>
+
+</odoo>
