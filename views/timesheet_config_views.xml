@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_timesheet_activity_category_list" model="ir.ui.view">
+        <field name="name">timesheet.activity.category.list</field>
+        <field name="model">timesheet.activity.category</field>
+        <field name="arch" type="xml">
+            <tree string="Activity Categories" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="show_type_breakdown"/>
+                <field name="is_idle"/>
+                <field name="report_color"/>
+                <field name="is_protected" readonly="1"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_timesheet_activity_category" model="ir.actions.act_window">
+        <field name="name">Activity Categories</field>
+        <field name="res_model">timesheet.activity.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_timesheet_activity_type_list" model="ir.ui.view">
+        <field name="name">timesheet.activity.type.list</field>
+        <field name="model">timesheet.activity.type</field>
+        <field name="arch" type="xml">
+            <tree string="Activity Types" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="is_idle"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_timesheet_activity_type" model="ir.actions.act_window">
+        <field name="name">Activity Types</field>
+        <field name="res_model">timesheet.activity.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_timesheet_config"
+            name="Configuration"
+            parent="hr_timesheet.menu_hr_time_tracking"
+            groups="timesheet_custom.group_timesheet_report_manager"
+            sequence="99"/>
+
+    <menuitem id="menu_timesheet_activity_categories"
+            name="Activity Categories"
+            parent="menu_timesheet_config"
+            action="action_timesheet_activity_category"
+            groups="timesheet_custom.group_timesheet_report_manager"
+            sequence="1"/>
+
+    <menuitem id="menu_timesheet_activity_types"
+            name="Activity Types"
+            parent="menu_timesheet_config"
+            action="action_timesheet_activity_type"
+            groups="timesheet_custom.group_timesheet_report_manager"
+            sequence="2"/>
+
+</odoo>

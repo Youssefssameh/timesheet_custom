@@ -7,7 +7,10 @@
         <field name="arch" type="xml">
             <form string="Executive Timesheet Report">
                 <group>
-                    <field name="employee_id"/>
+                    <field name="is_manager" invisible="1"/>
+                    <field name="employee_ids"
+                           widget="many2many_tags"
+                           readonly="not is_manager"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
                 </group>
@@ -36,6 +39,5 @@
         parent="hr_timesheet.menu_timesheets_reports"
         action="action_open_timesheet_executive_wizard"
         sequence="20"/>
-
 
 </odoo>

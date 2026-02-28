@@ -5,14 +5,11 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
-
-            <!-- Put field in the Settings page -->
             <xpath expr="//page[@name='settings']//group" position="inside">
                 <group string="Activity Category">
-                    <field name="x_activity_category"/>
+                    <field name="activity_category_id"/>
                 </group>
             </xpath>
-
         </field>
     </record>
 </odoo>

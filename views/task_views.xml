@@ -7,13 +7,13 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='project_id']" position="after">
-                <field name="x_project_category" invisible="1"/>
+                <field name="show_activity_type" invisible="1"/>
             </xpath>
 
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="x_activity_type"
-                    invisible="x_project_category != 'admin'"
-                    required="x_project_category == 'admin'"/>
+                <field name="x_activity_type_id"
+                    invisible="not show_activity_type"
+                    required="show_activity_type"/>
             </xpath>
 
         </field>
